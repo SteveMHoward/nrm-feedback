@@ -19,7 +19,7 @@ RUN sed -i -e '/auth :=/d' \
     -e 's/servername, smtpConfig.EnableStartTLS, auth, email/servername, false, nil, email/g' \
     -e 's/Config{ServerName: host}/Config{InsecureSkipVerify: true, ServerName: host}/g' \
     app/services/email/smtp/smtp.go && \
-    COMMITHASH=${COMMITHASH} GOOS=${TARGETOS} GOARCH=${TARGETARCH} make build-server
+    COMMITHASH=${COMMITHASH} GOOS=${TARGETOS} GOARCH=${TARGETARCH} GOFLAGS=-buildvcs=false make build-server
 
 #################
 ### UI Build Step
